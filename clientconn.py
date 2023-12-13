@@ -12,7 +12,6 @@ class ClientConn:
 
     def start(self):
         while True:
-            self.send(Msg("cissy", {"gozzo": "pozzo"}))
             req = self.sock.recv(1024)
             self.sock
             if not req:  # in case the connection is closed:

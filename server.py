@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from threading import Thread
 
 from clientconn import ClientConn
+from msg import Msg
 
 HOST = "localhost"
 PORT = 42069
@@ -16,6 +17,8 @@ class Server:
     sock: socket.socket
 
 
+server: Server
+
 # execute this block ONLY if running py server.py
 # this is to prevent this code to run if we do `import server`
 if __name__ == "__main__":
@@ -24,8 +27,6 @@ if __name__ == "__main__":
     serversock.bind(("localhost", 42069))
 
     print(f"server ascolta su {HOST}:{PORT}")
-
-    server: Server
 
     try:
         clients: list[ClientConn] = []
@@ -47,6 +48,8 @@ if __name__ == "__main__":
             traceback.print_exc()
 
     # now you're done with connecting clients
+    server.p1.send(Msg("ready", {}))
+    server.p2.send(Msg("ready", {}))
 
     # fai si che la porta 42069 venga liberata
     # if "server" in locals():
