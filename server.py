@@ -1,6 +1,6 @@
 import socket
 import traceback
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from threading import Thread
 
 from clientconn import ClientConn
@@ -15,6 +15,12 @@ class Server:
     p1: ClientConn
     p2: ClientConn
     sock: socket.socket
+
+    ready_players: int = field(init=False, default=0)
+
+    def broadcast(self, msg: Msg):
+        self.p1.send(msg)
+        self.p2.send(msg)
 
 
 server: Server
@@ -49,7 +55,18 @@ if __name__ == "__main__":
 
     # now you're done with connecting clients
     server.p1.send(Msg("ready", {}))
+    server.p1.serv = server
+    server.p1.other_conn = server.p2
+
     server.p2.send(Msg("ready", {}))
+    server.p2.serv = server
+    server.p2.other_conn = server.p1
+
+    # wait for all players to have selected their character
+    while server.ready_players < 2:
+        pass
+
+    server.broadcast(Msg("game_started", {}))
 
     # fai si che la porta 42069 venga liberata
     # if "server" in locals():

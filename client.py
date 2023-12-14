@@ -33,6 +33,9 @@ class Client:
                 self.server_conn.send(
                     Msg("selected_char", {"char_id": self.selected_char})
                 )
+                print("aspetto l'altro...")
+            case "game_started":
+                print("GOZZO!")
 
 
 HOST = "localhost"
