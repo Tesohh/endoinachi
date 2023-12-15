@@ -22,8 +22,11 @@ def fromDict(msg_dict: dict) -> Msg:
 
 
 def fromJson(jstr: str) -> Msg:
+    # print(jstr)
     try:
         data = json.loads(jstr)
         return fromDict(data)
     except json.JSONDecodeError:
         print("couldn't decode message")
+        print(jstr)
+        return Msg("", {})

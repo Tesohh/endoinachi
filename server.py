@@ -1,4 +1,5 @@
 import socket
+import time
 import traceback
 from dataclasses import dataclass, field
 from threading import Thread
@@ -17,6 +18,7 @@ class Server:
     sock: socket.socket
 
     ready_players: int = field(init=False, default=0)
+    current_player: ClientConn = field(init=False)
 
     def broadcast(self, msg: Msg):
         self.p1.send(msg)
@@ -67,6 +69,9 @@ if __name__ == "__main__":
         pass
 
     server.broadcast(Msg("game_started", {}))
+    time.sleep(0.001)
+    server.p1.send(Msg("your_turn", {}))
+    server.current_player = server.p1
 
     # fai si che la porta 42069 venga liberata
     # if "server" in locals():
