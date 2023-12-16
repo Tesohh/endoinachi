@@ -4,10 +4,14 @@ import color
 letter2color = {
     "0": color.RESET,
     "n": color.fg.black,
-    "r": color.fg.magenta,
+    "r": color.fg.rgb(210, 179, 172),
     "b": color.fg.red,
     "w": color.fg.white,
-    "m": color.fg.rgb(255, 248, 220),
+    "m": color.fg.rgb(88, 57, 39),
+    "a": color.fg.blue,
+    "f": color.fg.red,
+    "g": color.fg.rgb(40, 40, 40),
+    "p": color.fg.yellow,
 }
 
 

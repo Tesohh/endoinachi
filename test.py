@@ -1,4 +1,6 @@
-from renderer import render_from_str
+from renderer import render_character, render_from_str
+from chars import chars
 
 
-print(render_from_str("rrrrrrrr\nnwnwnwnw"))
+for i in chars:
+    print(render_character(i))
