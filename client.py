@@ -4,14 +4,16 @@ from chars import Char, chars
 import color
 from msg import Msg, fromJson
 from serverconn import ServerConn
+import renderer
 
 
 def print_chars(skip: list[int] = []):
-    for i in range(len(chars)):
-        if i not in skip:
-            print(i + 1, chars[i].name)
-        else:
-            print(f"{color.fg.black}{i + 1} {chars[i].name}{color.RESET}")
+    print(renderer.render_chunks(skip))
+    # for i in range(len(chars)):
+    #     if i not in skip:
+    #         print(i + 1, chars[i].name)
+    #     else:
+    #         print(f"{color.fg.black}{i + 1} {chars[i].name}{color.RESET}")
 
 
 @dataclass
@@ -49,7 +51,7 @@ class Client:
 
             case "game_started":
                 color.clear()
-                print("cissy si gioca")
+                print_chars(self.pulled_down)
 
             case "your_turn":
                 color.clear()

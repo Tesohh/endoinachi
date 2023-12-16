@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 @dataclass
 class Char:
     name: str
-    description: str = field(init=False)
     image_path: str = field(default="")
 
 
@@ -19,3 +18,11 @@ chars = [
     Char("Buccia", "characters/buccia"),
     Char("Rikilento", "characters/rikilento"),
 ]
+
+char_chunks = [
+    [chars[0], chars[1], chars[2]],
+    [chars[3], chars[4], chars[5]],
+    [chars[6], chars[7], chars[8]],
+]
+
+x = Char("x", "characters/x")
