@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 class Char:
     name: str
     description: str
-    image: str = field(init=False)
+    image_path: str = field(default="")
 
 
 chars = [
