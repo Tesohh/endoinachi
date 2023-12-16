@@ -7,8 +7,12 @@ from threading import Thread
 from clientconn import ClientConn
 from msg import Msg
 
-HOST = "localhost"
-PORT = 42069
+HOST = ""
+PORT = 0
+with open("addr") as f:
+    lines = f.read().splitlines()
+    HOST = lines[0]
+    PORT = int(lines[1])
 
 
 @dataclass
@@ -32,7 +36,7 @@ server: Server
 if __name__ == "__main__":
     serversock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    serversock.bind(("localhost", 42069))
+    serversock.bind((HOST, PORT))
 
     print(f"server ascolta su {HOST}:{PORT}")
 

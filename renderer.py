@@ -38,6 +38,7 @@ def render_from_str(input: str, number=0) -> str:
 def render_character(char: chars.Char, number=0) -> str:
     f = open(char.image_path)
     rf = f.read()
+    f.close()
 
     return render_from_str(rf, number)
 

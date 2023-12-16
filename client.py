@@ -99,8 +99,12 @@ class Client:
                 return True
 
 
-HOST = "localhost"
-PORT = 42069
+HOST = ""
+PORT = 0
+with open("addr") as f:
+    lines = f.read().splitlines()
+    HOST = lines[0]
+    PORT = int(lines[1])
 
 client: Client
 
